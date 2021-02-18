@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import {Link} from "react-router-dom";
 import Img from "../images/logo.png";
 
+
 const Nav = () => {
+    const[state, setstate]=React.useState(true);
     return (
        <nav className="navbar">
            <div className="container">
@@ -11,20 +14,23 @@ const Nav = () => {
                        <img src={Img} alt ="logo"/>
                    </div>
                </ul>
-               <ul className="navbar_right">
-                   <li><a href="">Home</a></li>
-                   <li><a href="">Services</a></li>
-                   <li><a href="">About</a></li>
-                   <li><a href="">Skills</a></li>
-                   <li><a href="">Portfolio</a></li>
-                   <li><a href="">Blog</a></li>
-                   <li><a href="">Contact</a></li>
-               </ul>
+               {state? <ul className="navbar_right">
+               <li><Link exact to="/" activeClassName="active" style={{color:'#fff',textDecoration: 'none' }}>Visit</Link></li>
+                   <li><Link to="/home"  activeClassName="activeRoute" style={{color:'#fff',textDecoration: 'none' }}>Home</Link></li>
+                   <li><Link to="/services" style={{color:'#fff',textDecoration: 'none' }}>Services</Link></li>
+                   <li><Link to="/about" style={{color:'#fff',textDecoration: 'none' }}>About</Link></li>
+                   <li><Link to="/prices" style={{color:'#fff' ,textDecoration: 'none'}}>Prices</Link></li>
+                   <li><Link to="/contact" style={{color:'#fff',textDecoration: 'none' }}>Contact</Link></li>
+               </ul>:""
 
+               }
+              
                </div>
               
            </div>
-
+<div className="toggle" onClick={()=>setstate(!state)}>
+    <i class="fa fa-align-justify fa-6x"></i>
+    </div>
        </nav>
     )
 }
